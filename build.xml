@@ -1,0 +1,26 @@
+<project name="builds" default="test" basedir="." xmlns:sf="antlib:com.salesforce">
+
+    <target name="retrieve">
+        <sf:retrieve
+                username="${SRC_USERNAME}"
+                password="${SRC_PASSWD}"
+                serverurl="${SRC_URL}"
+                pollWaitMillis="10000"
+                maxPoll="5000"
+                unpackaged="src/package.xml"
+                retrieveTarget="src">
+        </sf:retrieve>
+    </target>
+
+    <target name="deploy">
+        <sf:deploy
+                username="${DEST_USERNAME}"
+                password="${DEST_PASSWD}"
+                serverurl="${DEST_URL}"
+                pollWaitMillis="10000"
+                maxPoll="5000"
+                deployRoot="src"
+                checkOnly="true">
+        </sf:deploy>
+    </target>
+</project>
